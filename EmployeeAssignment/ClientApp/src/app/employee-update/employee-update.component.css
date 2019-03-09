@@ -1,0 +1,34 @@
+label {
+  width: 200px;
+  font-size: larger;
+  padding-right: 20px;
+  float: None;
+  display: inline-block;
+  vertical-align: central;
+}
+
+input {
+  float: None;
+  display: inline-block;
+  vertical-align: central;
+  height: 25px;
+  width: 250px
+}
+
+.line {
+  width: inherit;
+  border-bottom: 1px solid black;
+}
+
+button {
+  background-color: blue;
+  color: white;
+  font-size: large;
+  font-family: 'Times New Roman';
+  width: 100px;
+  height: 30px;
+}
+
+button:disabled, button[disabled] {
+    background-color: lightskyblue;
+}

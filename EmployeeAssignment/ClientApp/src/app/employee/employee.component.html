@@ -1,0 +1,104 @@
+<form [formGroup]="employeeForm" (ngSubmit)="onFormSubmit(employeeForm.value)" #formDir="ngForm">
+
+  <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-weight:bold" Class="success" align="left">
+    {{message}}
+  </p>
+  
+  <table>
+    <tr>
+      <td>
+        <label class=" control-label col-md-12" for="FirstName">
+        First Name
+          <b  style="color:red;font-weight:bold;font-size:larger">*</b>
+        </label>
+      </td>
+      <td style="padding-left:10px;padding-bottom:10px;padding-top:10px">
+        <input class="form-control" type="text" formControlName="FirstName" id="FirstName">
+        <span class="text-danger" *ngIf="employeeForm.hasError('required', 'FirstName') && formDir.submitted">
+          First Name is Required
+        </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label class="control-label col-md-12" for="LastName">
+        Last Name
+          <b style="color:red;font-weight:bold;font-size:larger">*</b>
+        </label>
+      </td>
+      <td style="padding-left:10px;padding-bottom:10px;padding-top:10px">
+        <input class="form-control" type="text" formControlName="LastName" id="LastName">
+        <span class="text-danger" *ngIf="employeeForm.hasError('required', 'LastName') && formDir.submitted">
+          Last Name is Required
+        </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label class="control-label col-md-12" for="Email">
+        Email
+          <b style="color:red;font-weight:bold;font-size:larger">*</b>
+        </label>
+      </td>
+      <td style="padding-left:10px;padding-bottom:10px;padding-top:10px">
+        <input class="form-control" type="text" formControlName="Email">
+        <span class="text-danger" *ngIf="employeeForm.hasError('required', 'Email') && formDir.submitted">
+          Email is Required
+        </span>
+        <span class="text-danger" *ngIf="employeeForm.hasError('email', 'Email') && formDir.submitted">
+          Valid Email is Required
+        </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label class="control-label col-md-12" for="City">
+        Phone
+          <b style="color:red;font-weight:bold;font-size:larger">*</b>
+        </label>
+      </td>
+      <td style="padding-left:10px;padding-bottom:10px;padding-top:10px">
+        <input class="form-control" type="text" formControlName="PhoneNumber" data-val="true">
+        <span class="text-danger" *ngIf="employeeForm.hasError('required', 'PhoneNumber') && formDir.submitted">
+          Phone Number is Required
+        </span>
+        <span class="text-danger" *ngIf="employeeForm.hasError('pattern', 'PhoneNumber') && formDir.submitted">
+          Valid Number is Required
+        </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label class="control-label col-md-12" for="Gender">
+        Gender
+          <b style="color:red;font-weight:bold;font-size:larger">*</b>
+        </label>
+      </td>
+      <td style="padding-left:10px;padding-bottom:10px;padding-top:10px">
+        <select class="form-control" data-val="true" formControlName="Gender">
+          <option value="">-- Select Gender --</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+        <span class="text-danger" *ngIf="employeeForm.hasError('required', 'Gender') && formDir.submitted">
+          Select Gender
+        </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+      </td>
+      <td style="padding-left:10px;padding-bottom:10px;padding-top:10px">
+        <button type="submit">Create</button>
+        <button type="button" (click)="OnReset()">Reset</button>
+      </td>
+    </tr>
+
+  </table>
+</form>
+

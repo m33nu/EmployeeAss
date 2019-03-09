@@ -1,0 +1,115 @@
+<form [formGroup]="employeeForm" (ngSubmit)="onUpdateFormSubmit(employeeForm.value)" #formDir="ngForm">
+
+  <p *ngIf="dataupdated" style="color:rgb(0, 128, 0);font-weight:bold" Class="success" align="left">
+    {{message}}
+  </p>
+  <table class="formcontrols">
+
+    <tr>
+      <td>
+        <label class=" control-label col-md-12" for="id">
+          Employee ID
+          <b style="color:red;font-weight:bold;font-size:larger">*</b>
+        </label>
+      </td>
+      <td style="padding-left:10px;padding-bottom:10px;padding-top:10px">
+        <input class="form-control" type="number" formControlName="id" min="1" (input)="onSearchChange()" ng-model="idValue">
+        <span class="text-danger" *ngIf="employeeForm.hasError('required', 'id') && formDir.submitted">
+          Employee Id is required.
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      </td>
+      <td style="padding-left:10px;padding-bottom:10px;padding-top:10px">
+        <button type="button" (click)="OnReadButtonClick()" [disabled]="employeeForm.hasError('required', 'id')">Read</button>
+        <p *ngIf="dataempty" style="color:red;font-weight:bold" Class="text-danger" align="left">
+          {{message}}
+        </p>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td>
+        <label class="control-label" for="FirstName">First Name</label>
+      </td>
+      <td style="padding-left:10px;padding-bottom:10px;padding-top:10px">
+        <input class="form-control" type="text" formControlName="FirstName" id="FirstName" [readonly] = "!dataread">
+        <span class="text-danger" *ngIf="employeeForm.hasError('required', 'FirstName') && formDir.submitted && dataread">
+          First Name is Required
+        </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label class="control-label col-md-12" for="LastName">Last Name</label>
+      </td>
+      <td style="padding-left:10px;padding-bottom:10px;padding-top:10px">
+        <input class="form-control" type="text" formControlName="LastName" id="LastName" [readonly] = "!dataread">
+        <span class="text-danger" *ngIf="employeeForm.hasError('required', 'LastName') && formDir.submitted && dataread">
+          Last Name is Required
+        </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label class="control-label col-md-12" for="Email">Email</label>
+      </td>
+      <td style="padding-left:10px;padding-bottom:10px;padding-top:10px">
+        <input class="form-control" type="text" formControlName="Email" [readonly] = "!dataread">
+        <span class="text-danger" *ngIf="employeeForm.hasError('required', 'Email') && formDir.submitted && dataread">
+          Email is Required
+        </span>
+        <span class="text-danger" *ngIf="employeeForm.hasError('email', 'Email') && formDir.submitted">
+          Valid Email is Required
+        </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label class="control-label col-md-12" for="City">Phone</label>
+      </td>
+      <td style="padding-left:10px;padding-bottom:10px;padding-top:10px">
+        <input class="form-control" type="text" formControlName="PhoneNumber" data-val="true" [readonly] = "!dataread">
+        <span class="text-danger" *ngIf="employeeForm.hasError('required', 'PhoneNumber') && formDir.submitted && dataread">
+          Phone Number is Required
+        </span>
+        <span class="text-danger" *ngIf="employeeForm.hasError('pattern', 'PhoneNumber') && formDir.submitted">
+          Valid Number is Required
+        </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label class="control-label col-md-12" for="Gender">Gender</label>
+      </td>
+      <td style="padding-left:10px;padding-bottom:10px;padding-top:10px">
+        <select class="form-control" data-val="true" formControlName="Gender">
+          <option value="">-- Select Gender --</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+        <span class="text-danger" *ngIf="employeeForm.hasError('required', 'Gender') && formDir.submitted && dataread">
+          Select Gender
+        </span>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+      </td>
+      <td style="padding-left:10px;padding-bottom:10px;padding-top:10px">
+        <button type="submit"  [disabled]="!dataread">Update</button>
+      </td>
+    </tr>
+
+  </table>
+</form>
+
